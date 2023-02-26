@@ -5,16 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BADR</title>
+    <style>
+        *{
+            background-color: aqua;
+        }
+        #titulo {
+            color: green;
+        }
+        .parrafoimagen1 {
+            color: blueviolet;
+        }
+        a[href="https://pattyland.cl/"] {
+            background-color: pink;
+        }
+        .parrafospattyland {
+            background-color: pink;
+        }
+        .paralistas li {
+            color: green;
+        }
+        #cursiva {
+            font-family: cursive;
+        }
+        h2 {
+            color: darkcyan;
+            font-family: cursive;
+        }
+        .cursoshechos {
+            color: blue;
+            font-family: fantasy;
+        }
+        p {
+            color: rgb(255, 60, 0);
+            font-weight: 200;
+        }
+        .cursosactivos {
+            color: blueviolet;
+            font-family: fantasy;
+        }
+        h2:hover {
+            color: forestgreen;
+        }
+        li:before {
+            content:"👌";
+        }
+        h2:after {
+            content:"😁";
+        }
+        h2::first-letter {
+            font-size: xx-large;
+        }
+        .medidasimagenes {
+            width: 400px;
+            height: 400px;
+            margin: 300px;
+        }
+
+    </style>
 </head>
 <body>
-    <section>
-        <h1> PÁGINA WEB HECHA POR BERNARDO </h1>
-        <P> Estoy aprendiendo como hacer páginas Web </P>
-        <ul> Quiero hacer paáginas para
+    <section class="seccion1">
+        <h1 id="titulo"> PÁGINA WEB HECHA POR BERNARDO </h1>
+        <P id="cursiva"> Estoy aprendiendo como hacer páginas Web </P>
+        <ul class="paralistas" id="titulo"> Quiero hacer páginas para
             <li>Julliete Desing</li>
             <li>Posada Don Remigio</li>
             <li>Ingenieria Eléctrica</li>
-            <li>Arawuato Cerveceria</li>
+            <li>Arawato Cerveceria</li>
         </ul>
     </section>
     
@@ -22,8 +79,8 @@
 
         <h2> Voy a suibir una imagen desde pexels </h2>
 
-        <p> Lo que se hace es que busco la imagen y copio su dirección. Y aqui coloco una etiqueta de imagen y la subo</p>
-        <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen de codigo">
+        <p class="parrafoimagen1"> Lo que se hace es que busco la imagen y copio su dirección. Y aqui coloco una etiqueta de imagen y la subo</p>
+        <img class="medidasimagenes"  src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen de codigo">
 
 
     </section>
@@ -41,15 +98,37 @@
 
         </form>
 
+        <form action="">
+            <label for="email">Ingrese su correo electronico</label>
+            <input type="text" name="" id="email">
+            <label for="telefono">Ingrese su numero telefonico</label>
+            <input type="text" name="" id="telefono">
+        </form>
+
         <footer>
+            <p class="parrafospattyland">Si quieres Brillar sin miedo </p>
             <a href="https://pattyland.cl/">Visitenos en nuestra tienda virtual</a>
         </footer>
 
-
+    </section>
+    
+    <section>
+        <h2> Voy a hacer otra sección para practicar los selectores combinadores </h2>
+        <img class="medidasimagenes" src="https://images.pexels.com/photos/9986284/pexels-photo-9986284.jpeg?auto=compress&cs=tinysrgb&w=600" alt="vuelo en montañas">
+        <p> Estoy haciendo cursos de la plataforma Platzi y EDX </p>
+        <ul class="cursoshechos">
+            Hasta ahora estos son los que he completado:
+            <li>Prework</li>
+            <li>Intro a la terminal de linux</li>
+            <li>Curso Profesional de Giy y GitHub</li>
+        </ul>
+        <ul class="cursosactivos"> Estos son los que estoy haciendo actualmente:
+            <li>Frontend Developer</li>
+            <li>CS50 Python</li>
+        </ul>
 
 
     </section>
-    
 
 
 </body>
