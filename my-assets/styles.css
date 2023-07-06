@@ -16,6 +16,84 @@
 }
 
 body {
+    margin: 0;
     font-family: 'Hind Siliguri', sans-serif;
     font-family: 'League Spartan', sans-serif;
 }
+
+/* Aqui empiezan los estilos del primer header */
+
+.menu-mobile {
+    display: none;
+}
+
+.logo {
+    width: 100px;
+}
+
+.first-nav {
+    display: flex;
+    justify-content: space-between; /* así separamos la parte left de la right*/
+    padding: 0 24px; /* cero up and botton and 24 by side */
+    border-bottom: 1px solid var(--color6);
+}
+
+.navbar-left-container {
+    display: flex;
+    align-items: center; /* este no esta en la clase del curso*/
+
+}
+
+.navbar-left-container ul {
+    margin-left: 12px;
+}
+
+.navbar-left-container ul,
+.navbar-right-container ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 12px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-left-container ul li,
+.navbar-right-container ul li {
+    margin-left: 24px;
+}
+
+.navbar-left-container ul li a,
+.navbar-right-container ul li a {
+    text-decoration: none;
+    color: var(--color2);
+    border: 1px solid white;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.navbar-left-container ul li a:hover,
+.navbar-right-container ul li a:hover {
+    border: 1px solid var(--color1);
+    color: var(--color1);
+}
+
+.navbar-email {
+    color: var(--color1);
+    font-size: var(--sm);
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .menu-mobile {
+        display: block;
+    }
+    .navbar-left-container ul {
+        display: none;
+    }
+    .navbar-email {
+        display: none;
+    }
+}
+
