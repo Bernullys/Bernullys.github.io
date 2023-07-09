@@ -27,8 +27,19 @@ body {
     display: none;
 }
 
+.menu-mobile,
+.logo,
+.carrito {
+    height: 32px;
+    cursor: pointer;
+}
+
 .logo {
-    width: 100px;
+    margin-left: 40px;
+}
+
+.carrito {
+    margin-right: 40px;
 }
 
 .first-nav {
@@ -97,3 +108,66 @@ body {
     }
 }
 
+/* Aca empiezan los estilos del segundo navbar*/
+
+.second-header {
+    margin-top: 100px;
+    background-color: aqua;
+}
+
+.second-nav {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.menu-mobile-2 {
+    display: none;
+}
+
+.menu-mobile-2,
+.logo-2,
+.carrito-2 {
+    height: 32px;
+    cursor: pointer;
+}
+
+.logo-2 {
+    margin-left: 40px;
+}
+
+.carrito-2  {
+    margin-right: 40px;
+}
+
+.navbar-left-container-2 {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-left-container-2 ul,
+.navbar-right-container-2 ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar-left-container-2 ul li a { 
+    text-decoration: none;
+    color: #FF5733;
+    margin: 20px;
+    padding: 30px;
+}
+
+.navbar-left-container-2 ul li a:hover {
+    background-color: white;
+}
+
+.navbar-right-container-2 ul li {
+    cursor: pointer;
+}
+
+.navbar-email-2 {
+    margin-right: 40px;
+    color: var(--color3);
+}
