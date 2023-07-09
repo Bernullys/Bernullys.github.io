@@ -45,6 +45,7 @@ body {
 .first-nav {
     display: flex;
     justify-content: space-between; /* así separamos la parte left de la right*/
+    align-items: center;
     padding: 0 24px; /* cero up and botton and 24 by side */
     border-bottom: 1px solid var(--color6);
 }
@@ -99,6 +100,7 @@ body {
 @media (max-width: 640px) {
     .menu-mobile {
         display: block;
+        align-items: center;
     }
     .navbar-left-container ul {
         display: none;
@@ -118,11 +120,13 @@ body {
 .second-nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 64px;
 }
 
 .menu-mobile-2 {
     display: none;
+    margin-left: 20px;
 }
 
 .menu-mobile-2,
@@ -170,4 +174,16 @@ body {
 .navbar-email-2 {
     margin-right: 40px;
     color: var(--color3);
+}
+
+@media (max-width: 640px) {
+    .navbar-left-container-2 ul {
+        display: none;
+    }
+    .navbar-email-2 {
+        display: none;
+    }
+    .menu-mobile-2 {
+        display: block;
+    }
 }
