@@ -207,13 +207,35 @@ body {
 .navbar-right-container-3 ul {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     margin-right: 32px;
+
 }
 
 .navbar-right-container-3 ul li {
     margin-left: 20px;
+    margin-top: 20px;
 }
 
 .navbar-right-container-3 ul li a {
     text-decoration: none;
+}
+
+.flecha-abajo {
+    width: 10px;
+}
+
+.menu-mobile-3 {
+    width: 30px;
+    display: none;
+    margin-right: 64px;
+}
+
+@media (max-width: 980px) {
+    .navbar-right-container-3 {
+        display: none;
+    }
+    .menu-mobile-3 {
+        display: block;
+    }
 }
