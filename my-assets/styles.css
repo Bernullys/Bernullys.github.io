@@ -187,3 +187,33 @@ body {
         display: block;
     }
 }
+
+
+/* Aca empiezan los estilos del tercer navbar*/
+
+.third-nav {
+    margin-top: 200px;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color5);
+}
+
+.logo-empresa {
+    margin-left: 64px;
+}
+
+.navbar-right-container-3 ul {
+    list-style: none;
+    display: flex;
+    margin-right: 32px;
+}
+
+.navbar-right-container-3 ul li {
+    margin-left: 20px;
+}
+
+.navbar-right-container-3 ul li a {
+    text-decoration: none;
+}
