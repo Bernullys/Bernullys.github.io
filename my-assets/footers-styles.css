@@ -1,0 +1,122 @@
+:root {
+    --color1: #DAF7A6;
+    --color2: #FFC300;
+    --color3: #FF5733;
+    --color4: #C70039;
+    --color5: #900C3F;
+    --color6: #581845;
+
+    --ssm: 10px;
+    --sm: 16px;
+    --md: 24px;
+    --mmd: 32px;
+    --lg: 40px;
+    --xl: 48px;
+    --xxl: 56px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-family: 'League Spartan', sans-serif;
+}
+
+.brand-logo-1 {
+    width: 44px;
+}
+
+.autors-right {
+    width: 12px;
+    margin-right: 4px;
+}
+
+.companny {
+    display: flex;
+    align-items: center;
+}
+
+.footer-1 {
+    height: 75px;
+    border-top: 1px solid var(--color3);
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footers-items-1 {
+    list-style: none;
+    display: flex;
+}
+
+.footers-items-1 li a {
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* Acá epiezan los estilos del footer-2*/
+
+.brand-logo-2 {
+    width: 32px;
+    margin-right: 10px;
+}
+
+.footers-items-2 img {
+    height: 32px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.footer-2-container {
+    margin-top: 100px;
+
+}
+
+.footer-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color4);
+    margin: 20px 100px 20px 100px;
+}
+
+.companny-2 {
+    display: flex;
+    align-items: center;
+}
+
+/* Acá epiezan los estilos del footer-3*/
+
+.footer-3-container {
+    margin-top: 100px;
+
+}
+
+.footer-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footers-items-3 {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    width: 1300px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--color2);
+}
+
+.footers-items-3 li a {
+    text-decoration: none;
+    margin: 10px;
+}
+
+.companny-3 {
+    margin: 0;
+}
+

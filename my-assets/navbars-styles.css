@@ -42,6 +42,12 @@ body {
     margin-right: 40px;
 }
 
+.first-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
 .first-nav {
     display: flex;
     justify-content: space-between; /* así separamos la parte left de la right*/
@@ -219,6 +225,10 @@ body {
 
 .navbar-right-container-3 ul li a {
     text-decoration: none;
+}
+
+.navbar-right-container-3 ul li a:hover {
+    color: #FFC300;
 }
 
 .flecha-abajo {
