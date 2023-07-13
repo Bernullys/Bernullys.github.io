@@ -120,3 +120,39 @@ body {
     margin: 0;
 }
 
+/* Acá epiezan los estilos del footer-4*/
+
+.brand-logo-4 {
+    height: 32px;
+}
+
+ .footer-4-container {
+    margin-top: 100px;
+ }
+
+ .footer-4 {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 32px;
+    border-top: 1px solid var(--color5);
+    margin-left: 100px;
+    margin-right: 100px;
+ }
+
+ .footers-items-4 {
+    list-style: none;
+    margin-top: 0;
+ }
+
+  .footers-items-4 h3 {
+    margin-bottom: 8px;
+    margin-top: 0;
+ }
+
+   .footers-items-4 li {
+    margin-bottom: 8px;
+ }
+
+  .footers-items-4 li a {
+    text-decoration: none;
+ }
