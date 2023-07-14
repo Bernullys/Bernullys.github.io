@@ -1,4 +1,5 @@
 const THE_DOG_API = "https://api.thedogapi.com/v1/images/search?limit=4";
+const THE_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 
 async function getRandomDogs () {
 
@@ -40,4 +41,20 @@ async function getRandomDogs () {
   
 };
 
+
+async function readingFavoritesDogs () {
+    const response = await fetch (`${THE_FAVORITES}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+        }
+    });
+    const data = await response.json();
+    console.log("This is the favorite dog");
+    console.log(data);
+}
+
 getRandomDogs();
+
+readingFavoritesDogs()
