@@ -30,6 +30,14 @@ async function getRandomDogs () {
         const getRandomButton = document.querySelector("#random-button");
         getRandomButton.addEventListener('click', getRandomDogs);
 
+        const saveToFavoritesButton1 = document.querySelector(".save-random-button1");
+        const saveToFavoritesButton2 = document.querySelector(".save-random-button2");
+        const saveToFavoritesButton3 = document.querySelector(".save-random-button3");
+        const saveToFavoritesButton4 = document.querySelector(".save-random-button4");
+        saveToFavoritesButton1.onclick = () => postingFavoritesDogs(data[0].id);
+        saveToFavoritesButton2.onclick = () => postingFavoritesDogs(data[1].id);
+        saveToFavoritesButton3.onclick = () => postingFavoritesDogs(data[2].id);
+        saveToFavoritesButton4.onclick = () => postingFavoritesDogs(data[3].id);
 
     } catch (error) {
 
@@ -53,8 +61,60 @@ async function readingFavoritesDogs () {
     const data = await response.json();
     console.log("This is the favorite dog");
     console.log(data);
+
+    const favoritesDogs = document.querySelector(".favorites-horizontal-container");
+    favoritesDogs.className = "favorites-horizontal-container";
+    const firstlyEmptyList = [];
+    favoritesDogs.innerHTML = "";
+
+    data.forEach(favoritesData => {
+
+        const scrollContent = document.createElement("section");
+        scrollContent.className = "scroll-content";
+        const favoriteArticle = document.createElement("article");
+        favoriteArticle.className = "favorite-article";
+        const favoriteImageContainer = document.createElement("section");
+        favoriteImageContainer.className = "favorite-image-container";
+        const imageFavorite = document.createElement("img");
+        imageFavorite.src = favoritesData.image.url;
+        imageFavorite.className = "favorite-image";
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "delete-favorite-button";
+        deleteButton.textContent = "Delete from favorites";
+        
+        favoriteImageContainer.appendChild(imageFavorite);
+        favoriteImageContainer.appendChild(deleteButton);
+        favoriteArticle.appendChild(favoriteImageContainer)
+        scrollContent.appendChild(favoriteArticle);
+
+        firstlyEmptyList.push(scrollContent);
+
+    })
+
+    favoritesDogs.append(...firstlyEmptyList);
 }
 
-getRandomDogs();
 
+async function postingFavoritesDogs (id) {
+    const response = await fetch (`${THE_FAVORITES}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+        },
+        body: JSON.stringify({
+            image_id: `${id}`, 
+        }),
+
+    });
+    const data = await response.json();
+    console.log("This is posting to a favorites");
+    console.log(data);
+
+    readingFavoritesDogs();
+
+}
+
+
+getRandomDogs();
 readingFavoritesDogs()
