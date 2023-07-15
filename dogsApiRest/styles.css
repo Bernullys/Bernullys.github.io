@@ -193,3 +193,9 @@ body {
 .favorite-image-container:hover .delete-favorite-button { /*to make a button invisble until hovering over*/
     opacity: 1;
 }
+
+.error-span2,
+.error-span3 {
+    font-size: 32px;
+    color: orange;
+}
