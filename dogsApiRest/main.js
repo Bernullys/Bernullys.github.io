@@ -1,5 +1,8 @@
 const THE_DOG_API = "https://api.thedogapi.com/v1/images/search?limit=4";
 const THE_FAVORITES = "https://api.thedogapi.com/v1/favourites";
+const DELETE_FAVORITES = (id) => `https://api.thedogapi.com/v1/favourites/${id}`; //This way you can put a dinamic parameter in the urlApi//
+
+//Ths function is by documentation,to get random images//
 
 async function getRandomDogs () {
 
@@ -38,7 +41,7 @@ async function getRandomDogs () {
         const saveToFavoritesButton2 = document.querySelector(".save-random-button2");
         const saveToFavoritesButton3 = document.querySelector(".save-random-button3");
         const saveToFavoritesButton4 = document.querySelector(".save-random-button4");
-        saveToFavoritesButton1.onclick = () => postingFavoritesDogs(data[0].id);
+        saveToFavoritesButton1.onclick = () => postingFavoritesDogs(data[0].id); // This is how we are posting into favorites //
         saveToFavoritesButton2.onclick = () => postingFavoritesDogs(data[1].id);
         saveToFavoritesButton3.onclick = () => postingFavoritesDogs(data[2].id);
         saveToFavoritesButton4.onclick = () => postingFavoritesDogs(data[3].id);
@@ -53,7 +56,7 @@ async function getRandomDogs () {
   
 };
 
-//This function is by documentation, only to read favorites. Then, after making others functions, save favorites//
+//This function is by documentation, only to read favorites (as you and some point put it in favorites). Then, after making others functions, save favorites//
 
 async function readingFavoritesDogs () {
 
@@ -100,6 +103,7 @@ async function readingFavoritesDogs () {
             const deleteButton = document.createElement("button");
             deleteButton.className = "delete-favorite-button";
             deleteButton.textContent = "Delete from favorites";
+            deleteButton.onclick = () => {deleteFromFavorites(favoritesData.id)}; //This is how we are obtaining the parameter to delete from favorites//
             
             favoriteImageContainer.appendChild(imageFavorite);
             favoriteImageContainer.appendChild(deleteButton);
@@ -122,7 +126,7 @@ async function readingFavoritesDogs () {
 
 }
 
-//This function is to finally post the favorites. And is called from the above buttons as required//
+//This function is to finally post a favorites section. And is called from the above buttons as required//
 
 async function postingFavoritesDogs (id) {
 
@@ -134,8 +138,8 @@ async function postingFavoritesDogs (id) {
                 "Content-Type": "application/json",
                 "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
             },
-            body: JSON.stringify({  //Check this beacause I would do it differentely//
-                image_id: `${id}`, 
+            body: JSON.stringify({  //Check this // I think is because they want us to send a body//
+                image_id: `${id}`,  // By documentation, this is how we are getting the id when posting //
             }),
         });
 
@@ -160,6 +164,26 @@ async function postingFavoritesDogs (id) {
 
     }
 
+}
+
+//This function is to delete the images posted in the favorites section//
+
+async function deleteFromFavorites (id) {
+    const response = await fetch (DELETE_FAVORITES(id), { //Insted of writing the url, is calling the function with the parameter//
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+        }
+        });
+
+    const data = await response.json();
+    console.log("This is the data from deleteFromFavorites");
+    console.log(data);
+
+    //Call readingFavoritesDogs to recharge and update the favorites section//
+    
+    readingFavoritesDogs ()
 }
 
 //Call getRandomDogs to always charge the images when open the application//
