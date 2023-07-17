@@ -195,7 +195,8 @@ body {
 }
 
 .error-span2,
-.error-span3 {
+.error-span3,
+.error-span4 {
     font-size: 32px;
     color: orange;
 }

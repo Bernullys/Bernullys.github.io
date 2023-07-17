@@ -169,22 +169,39 @@ async function postingFavoritesDogs (id) {
 //This function is to delete the images posted in the favorites section//
 
 async function deleteFromFavorites (id) {
-    const response = await fetch (DELETE_FAVORITES(id), { //Insted of writing the url, is calling the function with the parameter//
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
-        }
+
+    try {
+
+        const response = await fetch (DELETE_FAVORITES(id), { //Insted of writing the url, is calling the function with the parameter//
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+            }
         });
 
-    const data = await response.json();
-    console.log("This is the data from deleteFromFavorites");
-    console.log(data);
-
-    //Call readingFavoritesDogs to recharge and update the favorites section//
+        const statusName = response.status;
+        if (statusName !== 200) {
+            throw new Error (`Error fetching "deleteFromFavorites": ${statusName}`);
+        };
     
-    readingFavoritesDogs ()
-}
+        const data = await response.json();
+        console.log("This is the data from deleteFromFavorites");
+        console.log(data);
+    
+        //Call readingFavoritesDogs to recharge and update the favorites section//
+    
+        readingFavoritesDogs ()
+
+    } catch (error) {
+
+        const errorDeletingFromFavorites = document.querySelector(".error-span4");
+        errorDeletingFromFavorites.textContent = `Error ${error.message}`;
+        throw new Error ("There was an error Deleting From Favorites Dogs")
+
+    };
+
+};
 
 //Call getRandomDogs to always charge the images when open the application//
 
