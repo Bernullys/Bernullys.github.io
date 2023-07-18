@@ -200,3 +200,23 @@ body {
     font-size: 32px;
     color: orange;
 }
+
+.own-dogs-container {
+    background-color: var(--color5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding-bottom: 24px;
+}
+
+.own-dogs-title {
+    text-align: center;
+}
+
+.form-style {
+    width: 100%;
+    align-items: center;
+}

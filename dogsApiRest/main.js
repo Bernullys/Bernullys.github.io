@@ -1,6 +1,7 @@
 const THE_DOG_API = "https://api.thedogapi.com/v1/images/search?limit=4";
 const THE_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 const DELETE_FAVORITES = (id) => `https://api.thedogapi.com/v1/favourites/${id}`; //This way you can put a dinamic parameter in the urlApi//
+const UPLOAD = "https://api.thedogapi.com/v1/images/upload";
 
 //Ths function is by documentation,to get random images//
 
@@ -202,6 +203,49 @@ async function deleteFromFavorites (id) {
     };
 
 };
+
+//This function is to upload images of your own doggys//
+
+async function uploadDog() {
+
+    //This is how you can use the class FormData//
+
+    const form = document.getElementById("upload-form");
+    const formData = new FormData(form);  // when passing form as parameter of FormData, this will take all the info from that form//
+    console.log(formData.get("file"));
+
+    //This is unsolve... I want to use the button fron here, not from html//
+
+    // const uploadButton = document.querySelector(".upload-button");
+    // uploadButton.addEventListener("click", uploadDog());
+
+
+    //This is what we normally will do first... but, as is with formdata, is done this after//
+
+    const response = await fetch(UPLOAD, {
+        method: "POST",
+        headers: {
+            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+        },
+        body: formData, // documentation ask for a body called "file" thats why the input has that name//
+    });
+    data = await response.json();
+    console.log("Doggy uploaded");
+    console.log("This is the data from upload");
+    console.log(data);
+
+    postingFavoritesDogs(data.id);
+}
+
+
+
+
+
+
+
+
+
+
 
 //Call getRandomDogs to always charge the images when open the application//
 
