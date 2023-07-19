@@ -2,6 +2,7 @@ const THE_DOG_API = "https://api.thedogapi.com/v1/images/search?limit=4";
 const THE_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 const DELETE_FAVORITES = (id) => `https://api.thedogapi.com/v1/favourites/${id}`; //This way you can put a dinamic parameter in the urlApi//
 const UPLOAD = "https://api.thedogapi.com/v1/images/upload";
+const GET_UPLOAD = "https://api.thedogapi.com/v1/images/?limit=100";
 
 //Ths function is by documentation,to get random images//
 
@@ -206,6 +207,9 @@ async function deleteFromFavorites (id) {
 
 //This function is to upload images of your own doggys//
 
+
+
+
 async function uploadDog() {
 
     //This is how you can use the class FormData//
@@ -217,7 +221,7 @@ async function uploadDog() {
     //This is unsolve... I want to use the button fron here, not from html//
 
     // const uploadButton = document.querySelector(".upload-button");
-    // uploadButton.addEventListener("click", uploadDog());
+    // uploadButton.addEventListener("click", uploadDog);
 
 
     //This is what we normally will do first... but, as is with formdata, is done this after//
@@ -234,16 +238,70 @@ async function uploadDog() {
     console.log("This is the data from upload");
     console.log(data);
 
-    postingFavoritesDogs(data.id);
+    getMyUploadedDoggy ();
+
 }
 
+// This function will get my upload images of doggys //
 
+async function getMyUploadedDoggy () {
+    response = await fetch (GET_UPLOAD, {
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+        },
+    });
 
+    data = await response.json();
 
+    console.log("This is my uploaded get data")
+    console.log(data);
 
+    const ownDoggysContainer = document.querySelector(".your-own-doggys");
+    //ownDoggysContainer.className = "favorites-horizontal-container" // I have to put the style down here because send me an error if I let this class directly
+    ownDoggysContainer.style.display = "flex";
+    ownDoggysContainer.style.paddingTop = "24px";
+    ownDoggysContainer.style.paddingBotton = "24px";
+    ownDoggysContainer.style.backgroundColor = "#F05D67";
+    ownDoggysContainer.style.width = "100%";
+    ownDoggysContainer.style.overflowX = "scroll";
+    ownDoggysContainer.style.whiteSpace = "nowrap";
+    
+    const helperList = [];
 
+    ownDoggysContainer.innerHTML = "";
+    
+    data.forEach(ownData => {
 
+        const ownScrollContent = document.createElement("section");
+        ownScrollContent.className = "scroll-content";
+        const ownArticle = document.createElement("article");
+        ownArticle.className = "favorite-article";
+        const ownImageContainer = document.createElement("section");
+        ownImageContainer.className = "favorite-image-container";
+        const imageOwn = document.createElement("img");
+        imageOwn.src = ownData.url;
+        imageOwn.className = "favorite-image";
+        const deleteOwnButton = document.createElement("button");
+        deleteOwnButton.className = "delete-favorite-button";
+        deleteOwnButton.textContent = "Delete your own Doggy";
+        //deleteOwnButton.onclick = () => {deleteFromFavorites(favoritesData.id)}; //This is how we are obtaining the parameter to delete from favorites//
+        
+        ownImageContainer.appendChild(imageOwn);
+        ownImageContainer.appendChild(deleteOwnButton);
+        ownArticle.appendChild(ownImageContainer)
+        ownScrollContent.appendChild(ownArticle);
 
+        helperList.push(ownScrollContent);
+
+    })
+
+    ownDoggysContainer.append(...helperList);
+
+}
+
+getMyUploadedDoggy ();
 
 
 
