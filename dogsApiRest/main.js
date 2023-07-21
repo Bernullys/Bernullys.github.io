@@ -5,8 +5,8 @@ const UPLOAD = "https://api.thedogapi.com/v1/images/upload";
 const GET_UPLOAD = "https://api.thedogapi.com/v1/images/?limit=100";
 const DELETE_OWN = (id) => `https://api.thedogapi.com/v1/images/${id}`;
 
-//Ths function is by documentation,to get random images//
 
+//Ths function is by documentation,to get random images//
 async function getRandomDogs () {
 
     try {
@@ -59,8 +59,7 @@ async function getRandomDogs () {
   
 };
 
-//This function is by documentation, only to read favorites (as you and some point put it in favorites). Then, after making others functions, save favorites//
-
+//This function is by documentation, only to read favorites (at some point put it in favorites). Then, after making others functions, save it in favorites//
 async function readingFavoritesDogs () {
 
     try {
@@ -74,6 +73,7 @@ async function readingFavoritesDogs () {
         });
 
         const statusName = response.status;
+        console.log(statusName);
         if (statusName !== 200) {
             throw new Error (`Error fetching "readingFavoritesDogs": ${statusName}`);
         };
@@ -129,8 +129,7 @@ async function readingFavoritesDogs () {
 
 }
 
-//This function is to finally post a favorites section. And is called from the above buttons as required//
-
+//This function is to finally post an image in favorites section. And is called from the above buttons as required//
 async function postingFavoritesDogs (id) {
 
     try {
@@ -147,6 +146,7 @@ async function postingFavoritesDogs (id) {
         });
 
         const statusName = response.status;
+        console.log(statusName);
         if (statusName !== 200) {
             throw new Error (`Error fetching "postingFavoritesDogs": ${statusName}`);
         };
@@ -155,7 +155,7 @@ async function postingFavoritesDogs (id) {
         console.log("This is posting to a favorites");
         console.log(data);
     
-        //Calling readingFavoritesDogs -- check this//
+        //Calling readingFavoritesDogs -- check this// By documentation is posting the images set in favorites //
     
         readingFavoritesDogs();
 
@@ -170,7 +170,6 @@ async function postingFavoritesDogs (id) {
 }
 
 //This function is to delete the images posted in the favorites section//
-
 async function deleteFromFavorites (id) {
 
     try {
@@ -184,6 +183,7 @@ async function deleteFromFavorites (id) {
         });
 
         const statusName = response.status;
+        console.log(statusName);
         if (statusName !== 200) {
             throw new Error (`Error fetching "deleteFromFavorites": ${statusName}`);
         };
@@ -192,7 +192,7 @@ async function deleteFromFavorites (id) {
         console.log("This is the data from deleteFromFavorites");
         console.log(data);
     
-        //Call readingFavoritesDogs to recharge and update the favorites section//
+        //Call readingFavoritesDogs to recharge after deleting in the favorites section//
     
         readingFavoritesDogs ()
 
@@ -206,18 +206,15 @@ async function deleteFromFavorites (id) {
 
 };
 
-
-
-
-
 //This function is to upload images of your own doggys//
-
 async function uploadDog() {
 
     //This is how you can use the class FormData//
 
     const form = document.getElementById("upload-form");
     const formData = new FormData(form);  // when passing form as parameter of FormData, this will take all the info from that form//
+
+    console.log("This is the info get from the form using FormData");
     console.log(formData.get("file"));
 
     //This is unsolve... I want to use the button fron here, not from html//
@@ -240,9 +237,71 @@ async function uploadDog() {
     console.log("This is the data from upload");
     console.log(data);
 
+    //From here on, its my own design. I use another section to put my own images but first I had to get the data of my own images with this function//
     getMyUploadedDoggy ();
 
 }
+
+
+//(Own design) - This function will get my upload images of doggys //
+async function getMyUploadedDoggy () {
+    response = await fetch (GET_UPLOAD, {
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+        },
+    });
+
+    data = await response.json();
+
+    console.log("This is my uploaded get data")
+    console.log(data);
+
+    const ownDoggysContainer = document.querySelector(".your-own-doggys");
+    //ownDoggysContainer.className = "favorites-horizontal-container" // I had to put the style down here because send me an error if I let this class directly
+    ownDoggysContainer.style.display = "flex";
+    ownDoggysContainer.style.paddingTop = "24px";
+    ownDoggysContainer.style.paddingBottom = "24px";
+    ownDoggysContainer.style.backgroundColor = "#F05D67";
+    ownDoggysContainer.style.width = "100%";
+    ownDoggysContainer.style.overflowX = "scroll";
+    ownDoggysContainer.style.whiteSpace = "nowrap";
+
+    ownDoggysContainer.innerHTML = "";
+
+    const helperList = [];
+    
+    data.forEach(ownData => {
+
+        const ownScrollContent = document.createElement("section");
+        ownScrollContent.className = "scroll-content";
+        const ownArticle = document.createElement("article");
+        ownArticle.className = "favorite-article";
+        const ownImageContainer = document.createElement("section");
+        ownImageContainer.className = "favorite-image-container";
+        const imageOwn = document.createElement("img");
+        imageOwn.src = ownData.url;
+        imageOwn.className = "favorite-image";
+        const deleteOwnButton = document.createElement("button");
+        deleteOwnButton.className = "delete-favorite-button";
+        deleteOwnButton.textContent = "Delete your own Doggy";
+        deleteOwnButton.onclick = () => {deleteOwnDoggys(ownData.id)}; //This is how we are obtaining the parameter to delete from own//
+        
+        ownImageContainer.appendChild(imageOwn);
+        ownImageContainer.appendChild(deleteOwnButton);
+        ownArticle.appendChild(ownImageContainer)
+        ownScrollContent.appendChild(ownArticle);
+
+        helperList.push(ownScrollContent);
+
+    })
+
+    ownDoggysContainer.append(...helperList);
+
+};
+
+getMyUploadedDoggy ();
 
 //This function is to delete my own images updated
 
@@ -282,75 +341,10 @@ async function deleteOwnDoggys (id) {
 };
 
 
-// This function will get my upload images of doggys //
-
-async function getMyUploadedDoggy () {
-    response = await fetch (GET_UPLOAD, {
-        method: "GET",
-        headers:{
-            "Content-Type": "application/json",
-            "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
-        },
-    });
-
-    data = await response.json();
-
-    console.log("This is my uploaded get data")
-    console.log(data);
-
-    const ownDoggysContainer = document.querySelector(".your-own-doggys");
-    //ownDoggysContainer.className = "favorites-horizontal-container" // I had to put the style down here because send me an error if I let this class directly
-    ownDoggysContainer.style.display = "flex";
-    ownDoggysContainer.style.paddingTop = "24px";
-    ownDoggysContainer.style.paddingBotton = "24px";
-    ownDoggysContainer.style.backgroundColor = "#F05D67";
-    ownDoggysContainer.style.width = "100%";
-    ownDoggysContainer.style.overflowX = "scroll";
-    ownDoggysContainer.style.whiteSpace = "nowrap";
-
-    ownDoggysContainer.innerHTML = "";
-
-    const helperList = [];
-    
-    data.forEach(ownData => {
-
-        const ownScrollContent = document.createElement("section");
-        ownScrollContent.className = "scroll-content";
-        const ownArticle = document.createElement("article");
-        ownArticle.className = "favorite-article";
-        const ownImageContainer = document.createElement("section");
-        ownImageContainer.className = "favorite-image-container";
-        const imageOwn = document.createElement("img");
-        imageOwn.src = ownData.url;
-        imageOwn.className = "favorite-image";
-        const deleteOwnButton = document.createElement("button");
-        deleteOwnButton.className = "delete-favorite-button";
-        deleteOwnButton.textContent = "Delete your own Doggy";
-        deleteOwnButton.onclick = () => {deleteOwnDoggys(ownData.id)}; //This is how we are obtaining the parameter to delete from own//
-        
-        ownImageContainer.appendChild(imageOwn);
-        ownImageContainer.appendChild(deleteOwnButton);
-        ownArticle.appendChild(ownImageContainer)
-        ownScrollContent.appendChild(ownArticle);
-
-        helperList.push(ownScrollContent);
-
-    })
-
-    ownDoggysContainer.append(...helperList);
-
-};
-
-
-getMyUploadedDoggy ();
-
-
 
 //Call getRandomDogs to always charge the images when open the application//
-
 getRandomDogs();
 
 //Call readingFavoritesDogs to always charge the favorites when open the application//
-
 readingFavoritesDogs()
 

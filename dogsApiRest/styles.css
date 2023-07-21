@@ -228,8 +228,12 @@ body {
 }
 
 .select-input {
-    color: #962C4C;
+    color: white;
     cursor: pointer;
+    background-color: var(--color4);
+    margin-right: 24px;
+    height: 48px;
+    border-radius: 5px;
 }
 
 .upload-button {
@@ -240,4 +244,46 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+
+/* footer styles */
+
+
+.brand-logo-2 {
+    width: 32px;
+    margin-right: 10px;
+}
+
+.autors-right {
+    width: 10px;
+    margin-right: 10px;
+}
+
+.footers-items-2 img {
+    height: 32px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.footer-2-container {
+    margin-top: 100px;
+    width: 100%;
+
+}
+
+.footer-2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--color5);
+    background-color: var(--color4);
+    margin: 0;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.companny-2 {
+    display: flex;
+    align-items: center;
 }
