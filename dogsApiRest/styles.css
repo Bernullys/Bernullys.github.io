@@ -1,0 +1,243 @@
+:root {
+    --color1: #BECB7C;
+    --color2: #84967E;
+    --color3: #962C4C;
+    --color4: #F05D67;
+    --color5: #FAA191;
+
+    --rsm: 8px;
+    --sm: 12px;
+    --md: 16px;
+    --lg: 20px;
+    --xl: 24px;
+    --xxl: 32px;
+
+}
+
+body {
+    margin: 32px;
+    background-color: var(--color3);
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color5);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+.header-container p {
+    text-align: center;
+}
+
+.random-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F05D67;
+    border-bottom-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+
+#random-button {
+    font-size: 16px;
+    padding: 24px;
+    width: 400px;
+    align-self: center;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    background-color: var(--color5);
+    border: none;
+    cursor: pointer;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.random-articules-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.random-articule {
+    margin: 4px;
+}
+
+.random-articule {
+    position: relative;
+}
+
+.random-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.random-image1,
+.random-image2,
+.random-image3,
+.random-image4 {
+    display: block;
+    object-fit: cover;
+    width: 450px;
+    height: 450px;
+    border-radius: 24px;
+}
+
+.save-random-button1,
+.save-random-button2,
+.save-random-button3,
+.save-random-button4 {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 10px 20px;
+    background-color: var(--color5);
+    color:white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    
+}
+
+.random-image-container:hover .save-random-button1 {
+    opacity: 1;
+}
+
+.random-image-container:hover .save-random-button2 {
+    opacity: 1;
+}
+
+.random-image-container:hover .save-random-button3 {
+    opacity: 1;
+}
+
+.random-image-container:hover .save-random-button4 {
+    opacity: 1;
+}
+
+.error-span {
+    font-size: 32px;
+    color: orange;
+}
+
+/*Aqui empiezan los estilos de la sección de favoritos*/
+
+.favorites-title {
+    text-align: center;
+    background-color: var(--color5);
+    padding-bottom: 24px;
+    padding-top: 12px;
+    margin-bottom: 0;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+.favorite-image { /*to make all images with equal size */
+    display: block;
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 24px;
+
+}
+
+.favorites-horizontal-container {
+    margin-top: 0px;
+    margin-bottom: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background-color: var(--color4);
+    width: 100%; /* to scroll horizontaly*/
+    overflow-x: scroll; /* to scroll horizontaly*/
+    white-space: nowrap; /* to scroll horizontaly*/
+    display: flex;
+}
+
+.scroll-content {
+    display: flex; /* to scroll horizontaly*/
+}
+
+.favorite-article {
+    margin-right: 32px;
+}
+
+.favorite-image-container { /*to make a button invisble until hovering over*/
+    position: relative;
+    display: inline-block;
+}
+
+.delete-favorite-button { /*to make a button invisble until hovering over*/
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 10px 20px;
+    background-color: var(--color5);
+    color:white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    
+}
+
+.favorite-image-container:hover .delete-favorite-button { /*to make a button invisble until hovering over*/
+    opacity: 1;
+}
+
+.error-span2,
+.error-span3,
+.error-span4 {
+    font-size: 32px;
+    color: orange;
+}
+
+.own-dogs-container {
+    background-color: var(--color5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding-bottom: 24px;
+}
+
+.own-dogs-title {
+    text-align: center;
+}
+
+.form-style {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-style button {
+    height: 48px;
+}
+
+.select-input {
+    color: #962C4C;
+    cursor: pointer;
+}
+
+.upload-button {
+    height: 48px;
+    background-color:var(--color4) ;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
