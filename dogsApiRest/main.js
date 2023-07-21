@@ -3,6 +3,7 @@ const THE_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 const DELETE_FAVORITES = (id) => `https://api.thedogapi.com/v1/favourites/${id}`; //This way you can put a dinamic parameter in the urlApi//
 const UPLOAD = "https://api.thedogapi.com/v1/images/upload";
 const GET_UPLOAD = "https://api.thedogapi.com/v1/images/?limit=100";
+const DELETE_OWN = (id) => `https://api.thedogapi.com/v1/images/${id}`;
 
 //Ths function is by documentation,to get random images//
 
@@ -205,10 +206,11 @@ async function deleteFromFavorites (id) {
 
 };
 
+
+
+
+
 //This function is to upload images of your own doggys//
-
-
-
 
 async function uploadDog() {
 
@@ -242,6 +244,44 @@ async function uploadDog() {
 
 }
 
+//This function is to delete my own images updated
+
+async function deleteOwnDoggys (id) {
+
+    try {
+
+        const response = await fetch (DELETE_OWN(id), { //Insted of writing the url, is calling the function with the parameter//
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": "live_imFX3wCXMSiiT5grtBIzq2NKnjjOSqkAUFB02DRHoqYeCNuK65JgQgc2DsTNbDtc",
+            }
+        });
+
+        const statusName = response.status;
+        if (statusName !== 204) {
+            throw new Error (`Error fetching "deleteFromOwn": ${statusName}`);
+        };
+        console.log(response.status);
+    
+        //const data = await response.json();
+        console.log("This is the data from deleteOwn");
+        console.log(data);
+    
+        //Call getMyUploadedDoggy to recharge and update the own section//
+        getMyUploadedDoggy ();
+
+    } catch (error) {
+
+        const errorDeletingFromOwn = document.querySelector(".error-span5");
+        errorDeletingFromOwn.textContent = `Error ${error.message}`;
+        throw new Error ("There was an error Deleting From Own Dogs")
+
+    };
+
+};
+
+
 // This function will get my upload images of doggys //
 
 async function getMyUploadedDoggy () {
@@ -259,7 +299,7 @@ async function getMyUploadedDoggy () {
     console.log(data);
 
     const ownDoggysContainer = document.querySelector(".your-own-doggys");
-    //ownDoggysContainer.className = "favorites-horizontal-container" // I have to put the style down here because send me an error if I let this class directly
+    //ownDoggysContainer.className = "favorites-horizontal-container" // I had to put the style down here because send me an error if I let this class directly
     ownDoggysContainer.style.display = "flex";
     ownDoggysContainer.style.paddingTop = "24px";
     ownDoggysContainer.style.paddingBotton = "24px";
@@ -267,10 +307,10 @@ async function getMyUploadedDoggy () {
     ownDoggysContainer.style.width = "100%";
     ownDoggysContainer.style.overflowX = "scroll";
     ownDoggysContainer.style.whiteSpace = "nowrap";
-    
-    const helperList = [];
 
     ownDoggysContainer.innerHTML = "";
+
+    const helperList = [];
     
     data.forEach(ownData => {
 
@@ -286,7 +326,7 @@ async function getMyUploadedDoggy () {
         const deleteOwnButton = document.createElement("button");
         deleteOwnButton.className = "delete-favorite-button";
         deleteOwnButton.textContent = "Delete your own Doggy";
-        //deleteOwnButton.onclick = () => {deleteFromFavorites(favoritesData.id)}; //This is how we are obtaining the parameter to delete from favorites//
+        deleteOwnButton.onclick = () => {deleteOwnDoggys(ownData.id)}; //This is how we are obtaining the parameter to delete from own//
         
         ownImageContainer.appendChild(imageOwn);
         ownImageContainer.appendChild(deleteOwnButton);
@@ -299,7 +339,8 @@ async function getMyUploadedDoggy () {
 
     ownDoggysContainer.append(...helperList);
 
-}
+};
+
 
 getMyUploadedDoggy ();
 
@@ -312,3 +353,4 @@ getRandomDogs();
 //Call readingFavoritesDogs to always charge the favorites when open the application//
 
 readingFavoritesDogs()
+
